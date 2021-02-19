@@ -1,9 +1,9 @@
 import React from "react";
-import "./Header.css";
 import styled from "styled-components";
 import { Avatar } from "@material-ui/core";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import SearchIcon from "@material-ui/icons/Search";
+import HelpOutline from "@material-ui/icons/HelpOutline";
 
 function Header() {
   return (
@@ -14,17 +14,40 @@ function Header() {
         />
         <AccessTimeIcon />
       </HeaderLeft>
-      <HeaderSearchIcon>
+      <HeaderSearch>
         <SearchIcon />
         <input placeholder="Search PAPAFAM" />
-      </HeaderSearchIcon>
+      </HeaderSearch>
+
+      <HeaderRight>
+        <HelpOutline />
+      </HeaderRight>
     </HeaderContainer>
   );
 }
 
 export default Header;
 
-const HeaderSearchIcon = styled.div``;
+const HeaderSearch = styled.div`
+  flex: 0.4;
+  opacity: 1;
+  border-radius: 6px;
+  border-color: #421f44;
+  text-align: center;
+  display: flex;
+  padding: 0 50px;
+  color: gray;
+  border: 1px gray solid;
+
+  > input {
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    min-width: 30vw;
+    outline: 0;
+    color: white;
+  }
+`;
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -45,6 +68,17 @@ const HeaderLeft = styled.div`
   > .MuiSvgIcon-root {
     margin-left: auto;
     margin-right: 30px;
+  }
+`;
+
+const HeaderRight = styled.div`
+  flex: 0.3;
+  display: flex;
+  align-items: flex-end;
+
+  > .MuiSvgIcon-root {
+    margin-left: auto;
+    margin-right: 20px;
   }
 `;
 
