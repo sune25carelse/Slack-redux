@@ -12,7 +12,7 @@ import { useRef } from "react";
 import { useEffect } from "react";
 
 function Chat() {
-  const chatref = useRef(null);
+  const chatRef = useRef(null);
   const roomId = useSelector(selectRoomId);
   const [roomDetails] = useDocument(
     roomId && db.collection("rooms").doc(roomId)
@@ -27,7 +27,7 @@ function Chat() {
   );
 
   useEffect(() => {
-    chatref?.current?.scrollIntoView({
+    chatRef?.current?.scrollIntoView({
       behavior: "smooth",
     });
   }, [roomId, loading]);
@@ -62,11 +62,11 @@ function Chat() {
               />
             );
           })}
-          <ChatBottom ref={chatref} />
+          <ChatBottom ref={chatRef} />
         </ChatMessages>
 
         <ChatInput
-          chatref={chatref}
+          chatref={chatRef}
           channelName={roomDetails?.data().name}
           channelId={roomId}
         />

@@ -5,7 +5,7 @@ import db from "../firebase";
 import firebase from "firebase";
 import { useState } from "react";
 
-function ChatInput({ channelName, channelId }) {
+function ChatInput({ channelName, channelId, chatRef }) {
   const [input, setInput] = useState("");
 
   const sendMessage = (e) => {
@@ -21,6 +21,10 @@ function ChatInput({ channelName, channelId }) {
       user: "Luca Van Wyk",
       userImage:
         "https://seeklogo.net/wp-content/uploads/2011/08/liverpool-logo-vector-400x400.png",
+    });
+
+    chatRef.current.scrollIntoView({
+      behavior: "smooth",
     });
 
     setInput("");
