@@ -1,12 +1,15 @@
 import { Button } from "@material-ui/core";
 import React from "react";
 import styled from "styled-components";
-import db from "../firebase";
+import db, { auth } from "../firebase";
 import firebase from "firebase";
 import { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function ChatInput({ channelName, channelId, chatRef }) {
   const [input, setInput] = useState("");
+
+  const [user] = useAuthState(auth);
 
   const sendMessage = (e) => {
     e.preventDefault(); // prevent refresh
@@ -18,9 +21,8 @@ function ChatInput({ channelName, channelId, chatRef }) {
     db.collection("rooms").doc(channelId).collection("messages").add({
       message: input,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      user: "Luca Van Wyk",
-      userImage:
-        "https://seeklogo.net/wp-content/uploads/2011/08/liverpool-logo-vector-400x400.png",
+      user: user.displayName,
+      userImage: user.photoURL,
     });
 
     chatRef.current.scrollIntoView({

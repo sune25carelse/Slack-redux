@@ -9,14 +9,15 @@ import { auth } from "../firebase";
 
 function Header() {
   const [user] = useAuthState(auth);
+  console.log("user is", user);
 
   return (
     <HeaderContainer>
       <HeaderLeft>
         <HeaderAvatar
           onClick={() => auth.signOut()}
-          alt={user?.displName}
-          src={user?.photoUrl}
+          alt={user?.displayName}
+          src={user?.photoURL}
         />
         <AccessTimeIcon />
       </HeaderLeft>
